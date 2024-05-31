@@ -1,0 +1,31 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "io.bluestaggo.authadvlite.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+    "FeatureDecoratorAccessor",
+    "FoodItemMixin",
+    "player.HungerManagerMixin",
+    "LargeOakTreeFeatureMixin",
+    "OverworldChunkGeneratorMixin",
+    "player.PlayerEntityMixin",
+    "ServerWorldMixin",
+    "biome.BiomeInvoker",
+    "biome.BiomeMixin",
+    "biome.SwampBiomeMixin",
+    "layer.AddSunflowerPlainsLayerMixin",
+    "layer.BiomeInitLayerMixin",
+    "layer.LayerAccessor",
+    "layer.LayerMixin",
+    "layer.RiverMixLayerMixin",
+    "layer.SmoothLayerMixin"
+  ],
+  "client": [
+  ],
+  "server": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+	}
+}

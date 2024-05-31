@@ -1,0 +1,29 @@
+package io.bluestaggo.authadvlite.mixin.player;
+
+import net.minecraft.entity.living.player.PlayerEntity;
+import net.minecraft.entity.player.HungerManager;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Overwrite;
+import org.spongepowered.asm.mixin.Shadow;
+
+@Mixin(HungerManager.class)
+public abstract class HungerManagerMixin {
+	@Shadow private int foodLevel;
+	@Shadow private int lastFoodLevel;
+	@Shadow private float exhaustion;
+
+	/**
+	 * @author BlueStaggo
+	 * @reason New hunger system
+	 */
+	@Overwrite
+	public void tick(PlayerEntity player) {
+		this.lastFoodLevel = this.foodLevel;
+		if(this.exhaustion > 4.0F) {
+			this.exhaustion -= 4.0F;
+			if(player.world.difficulty > 0) {
+				this.foodLevel = Math.max(this.foodLevel - 1, 0);
+			}
+		}
+	}
+}
