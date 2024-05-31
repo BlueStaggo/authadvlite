@@ -177,10 +177,10 @@ public class TallSpruceTreeFeature extends Feature {
         int var6 = var1.getBlock(var3, var4 - 1, var5);
 
         if ((var6 == Block.GRASS.id || var6 == Block.DIRT.id) && var4 >= 2) {
-            var1.setBlockWithMetadata(var3, var4 - 1, var5, Block.DIRT.id, 0);
-            var1.setBlockWithMetadata(var3 + 1, var4 - 1, var5, Block.DIRT.id, 0);
-            var1.setBlockWithMetadata(var3, var4 - 1, var5 + 1, Block.DIRT.id, 0);
-            var1.setBlockWithMetadata(var3 + 1, var4 - 1, var5 + 1, Block.DIRT.id, 0);
+            this.setBlockWithMetadata(var1, var3, var4 - 1, var5, Block.DIRT.id, 0);
+            this.setBlockWithMetadata(var1, var3 + 1, var4 - 1, var5, Block.DIRT.id, 0);
+            this.setBlockWithMetadata(var1, var3, var4 - 1, var5 + 1, Block.DIRT.id, 0);
+            this.setBlockWithMetadata(var1, var3 + 1, var4 - 1, var5 + 1, Block.DIRT.id, 0);
             return true;
         } else {
             return false;
