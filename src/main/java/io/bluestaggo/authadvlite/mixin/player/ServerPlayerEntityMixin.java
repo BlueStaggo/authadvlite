@@ -8,8 +8,8 @@ import org.spongepowered.asm.mixin.Mixin;
 
 @Mixin(ServerPlayerEntity.class)
 public abstract class ServerPlayerEntityMixin extends PlayerEntity implements InventoryMenuListener {
-	public ServerPlayerEntityMixin(World world) {
-		super(world);
+	public ServerPlayerEntityMixin(World world, String name) {
+		super(world, name);
 	}
 
 

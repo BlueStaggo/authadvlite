@@ -26,8 +26,8 @@ public abstract class FoodItemMixin extends Item {
 	)
 	private void foodAddHealth(HungerManager hungerManager, FoodItem foodItem, @Local(argsOnly = true) PlayerEntity player) {
 		int pointsToAdd = foodItem.getHungerPoints();
-		int missingHealth = player.getMaxHealth() - player.getHealth();
-		int addedHealth = Math.min(pointsToAdd, missingHealth);
+		float missingHealth = player.getMaxHealth() - player.getHealth();
+		float addedHealth = Math.min(pointsToAdd, missingHealth);
 		pointsToAdd -= addedHealth;
 
 		player.heal(addedHealth);

@@ -53,7 +53,7 @@ public class GenLayerPreviewer {
 	private static final Font titleFont = new Font("Minecraft", Font.PLAIN, 40);
 
 	private static final float[] heatmapColor = { 0.0F, 1.0F, 0.0F };
-	private static final File imageSequenceLocation = new File(Minecraft.getRunDirectory(), "genlayertester");
+	private static final File imageSequenceLocation = new File(Minecraft.getInstance().runDir, "genlayertester");
 	private static final String gifScript = "ffmpeg -framerate 0.5 -i \"genLayer%d.png\" -sws_dither none -vf tpad=start_mode=clone:start_duration=1:stop_mode=clone:stop_duration=3 genLayers.gif";
 
 	// GenLayer input array
