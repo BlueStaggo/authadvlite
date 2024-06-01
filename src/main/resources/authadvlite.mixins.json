@@ -4,12 +4,13 @@
   "package": "io.bluestaggo.authadvlite.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
+    "anvil.AnvilMenu$2Mixin",
+    "anvil.AnvilMenuMixin",
+    "EnchantingTableMenuMixin",
     "FeatureDecoratorAccessor",
     "FoodItemMixin",
-    "player.HungerManagerMixin",
     "LargeOakTreeFeatureMixin",
     "OverworldChunkGeneratorMixin",
-    "player.PlayerEntityMixin",
     "ServerWorldMixin",
     "biome.BiomeInvoker",
     "biome.BiomeMixin",
@@ -19,9 +20,13 @@
     "layer.LayerAccessor",
     "layer.LayerMixin",
     "layer.RiverMixLayerMixin",
-    "layer.SmoothLayerMixin"
+    "layer.SmoothLayerMixin",
+    "player.HungerManagerMixin",
+    "player.PlayerEntityMixin"
   ],
   "client": [
+    "anvil.AnvilScreenMixin",
+    "player.InputClientPlayerEntityMixin"
   ],
   "server": [
   ],
