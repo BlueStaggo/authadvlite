@@ -48,7 +48,7 @@ public abstract class BiomeMixin implements BiomeCustomInvoker {
 		((BiomeMixin) (Object) Biome.PLAINS).setTemperatureAndDownfall(0.8F, 0.5F);
 
 		((BiomeMixin) (Object) Biome.DESERT).setHeight(0.2F, 0.2F);
-		((BiomeMixin) (Object) Biome.DESERT).authadvlite$setHeightVariation(0.2F, 0.2F);
+		((BiomeMixin) (Object) Biome.DESERT).authadvlite$setHeightVariation(0.0F, 0.8F);
 
 		((BiomeMixin) (Object) Biome.EXTREME_HILLS).setHeight(0.3F, 1.8F);
 
