@@ -55,10 +55,10 @@ public abstract class SmoothLayerMixin extends Layer {
                         var6[var8 + var7 * width] = var9;
                     } else {
                         var6[var8 + var7 * width] =
-		                        var10 == Biome.FROZEN_OCEAN.id
-				                        || var11 == Biome.FROZEN_OCEAN.id
-				                        || var12 == Biome.FROZEN_OCEAN.id
-				                        || var13 == Biome.FROZEN_OCEAN.id ? AABiomes.COLD_BEACH.id
+		                        Biome.BY_ID[var10].temperature < 0.15F
+				                        || Biome.BY_ID[var11].temperature < 0.15F
+				                        || Biome.BY_ID[var12].temperature < 0.15F
+				                        || Biome.BY_ID[var13].temperature < 0.15F ? AABiomes.COLD_BEACH.id
 		                        : this.nextInt(4) == 3 ? AABiomes.GRAVEL_BEACH.id
 		                        : Biome.BEACH.id;
                     }
