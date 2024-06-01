@@ -16,6 +16,7 @@
     "biome.BiomeInvoker",
     "biome.BiomeMixin",
     "biome.ForestBiomeMixin",
+    "biome.IceBiomeMixin",
     "biome.SwampBiomeMixin",
     "layer.AddIslandLayerMixin",
     "layer.BiomeInitLayerMixin",
