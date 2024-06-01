@@ -37,7 +37,7 @@ public abstract class LargeOakTreeFeatureMixin extends Feature {
 		method = "placeBranches",
 		at = @At(
 			value = "INVOKE",
-			target = "Lnet/minecraft/world/gen/feature/LargeOakTreeFeature;placeBranch([I[II)V"
+			target = "Lnet/minecraft/world/gen/feature/LargeOakTreeFeature;placeBranch([I[ILnet/minecraft/block/Block;)V"
 		),
 		index = 1
 	)

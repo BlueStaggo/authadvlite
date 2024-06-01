@@ -27,12 +27,12 @@ class BiomeBuilder {
 	}
 
 	public BiomeBuilder height(float b, float v) {
-		((BiomeInvoker) this.biome).invokeSetHeight(b, v);
+		((BiomeInvoker) this.biome).invokeSetHeight(new Biome.Height(b, v));
 		return this;
 	}
 
 	public BiomeBuilder heightVariation(float b, float v) {
-		((BiomeCustomInvoker) this.biome).authadvlite$setHeightVariation(b, v);
+		((BiomeCustomInvoker) this.biome).authadvlite$setHeightVariation(new Biome.Height(b, v));
 		return this;
 	}
 }

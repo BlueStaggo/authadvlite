@@ -45,7 +45,7 @@ public abstract class RiverMixLayerMixin extends Layer {
             } else if (var6[var8] >= 0) {
                 if (var5[var8] == Biome.MUSHROOM_ISLAND.id || var5[var8] == Biome.MUSHROOM_ISLAND_SHORE.id) {
                     var7[var8] = Biome.MUSHROOM_ISLAND_SHORE.id;
-                } else if (Biome.BY_ID[var5[var8]].getTemperature() < 0.15F) {
+                } else if (Biome.byId(var5[var8]).temperature < 0.15F) {
                     var7[var8] = Biome.FROZEN_RIVER.id;
                 } else {
                     var7[var8] = var6[var8];

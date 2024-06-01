@@ -2,6 +2,7 @@ package io.bluestaggo.authadvlite.mixin.player;
 
 import net.minecraft.entity.living.player.PlayerEntity;
 import net.minecraft.entity.player.HungerManager;
+import net.minecraft.world.Difficulty;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
@@ -21,7 +22,7 @@ public abstract class HungerManagerMixin {
 		this.lastFoodLevel = this.foodLevel;
 		if(this.exhaustion > 4.0F) {
 			this.exhaustion -= 4.0F;
-			if(player.world.difficulty > 0) {
+			if(player.world.difficulty != Difficulty.PEACEFUL) {
 				this.foodLevel = Math.max(this.foodLevel - 1, 0);
 			}
 		}

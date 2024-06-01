@@ -2,11 +2,14 @@ package io.bluestaggo.authadvlite.biome;
 
 import io.bluestaggo.authadvlite.mixin.FeatureDecoratorAccessor;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.gen.feature.Feature;
+import net.minecraft.world.gen.feature.AbstractTreeFeature;
+import net.minecraft.world.gen.feature.BirchTreeFeature;
 
 import java.util.Random;
 
 public class ParchedForestBiome extends Biome {
+	private final BirchTreeFeature birchTree = new BirchTreeFeature(false, false);
+
 	protected ParchedForestBiome(int id) {
 		super(id);
 
@@ -17,8 +20,8 @@ public class ParchedForestBiome extends Biome {
 	}
 
 	@Override
-	public Feature getRandomTree(Random random) {
-		return random.nextInt(5) == 0 ? this.spruceTree
+	public AbstractTreeFeature getRandomTree(Random random) {
+		return random.nextInt(5) == 0 ? this.birchTree
 			: random.nextInt(10) == 0 ? this.largeTree
 			: this.tree;
 	}

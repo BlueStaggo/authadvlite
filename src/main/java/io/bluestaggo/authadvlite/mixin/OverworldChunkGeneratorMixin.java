@@ -51,7 +51,7 @@ public abstract class OverworldChunkGeneratorMixin implements ChunkSource {
 	}
 
 	@Redirect(
-		method = "populateHeightmap",
+		method = "populateHeightMap",
 		at = @At(
 			value = "FIELD",
 			target = "Lnet/minecraft/world/biome/Biome;baseHeight:F",
@@ -75,7 +75,7 @@ public abstract class OverworldChunkGeneratorMixin implements ChunkSource {
 	}
 
 	@Redirect(
-		method = "populateHeightmap",
+		method = "populateHeightMap",
 		at = @At(
 			value = "FIELD",
 			target = "Lnet/minecraft/world/biome/Biome;heightVariation:F",
@@ -96,98 +96,6 @@ public abstract class OverworldChunkGeneratorMixin implements ChunkSource {
 		}
 
 		return biome.heightVariation;
-	}
-
-	@Redirect(
-		method = "generateBiomes",
-		at = @At(
-			value = "FIELD",
-			target = "Lnet/minecraft/world/biome/Biome;surfaceBlockId:B",
-			opcode = Opcodes.GETFIELD
-		)
-	)
-	private byte customSurfaceBlock(Biome biome,
-	                                @Local(ordinal = 0, argsOnly = true) int chunkX,
-	                                @Local(ordinal = 1, argsOnly = true) int chunkZ,
-	                                @Local(ordinal = 4) int x,
-	                                @Local(ordinal = 3) int z) {
-		int wx = chunkX * 16 + x;
-		int wz = chunkZ * 16 + z;
-
-		if (biome instanceof SnowcappedHillsBiome) {
-			if (this.getBoostValue((wx + random.nextInt(4)) / -8, (wz + random.nextInt(4)) / -8) < -0.35) {
-				double specialValue = this.getSpecialValue(wx, wz);
-				if (specialValue < -1.0 || specialValue > 2.0) {
-					return (byte) Block.GRASS.id;
-				}
-			}
-
-			if (biome != AABiomes.SNOWCAPPED_FOREST) {
-				if (this.getSpecialValue(wx, wz) > 1.0) {
-					return (byte) Block.STONE.id;
-				}
-			}
-		}
-
-		if (biome == AABiomes.MUSHROOM_VALLEY) {
-			if (Math.abs(this.getSpecialValue(wx, wz)) > 3.0) {
-				return (byte) Block.MYCELIUM.id;
-			}
-		}
-
-		return biome.surfaceBlockId;
-	}
-
-	@Redirect(
-		method = "generateBiomes",
-		at = @At(
-			value = "FIELD",
-			target = "Lnet/minecraft/world/biome/Biome;subsurfaceBlockId:B",
-			opcode = Opcodes.GETFIELD
-		)
-	)
-	private byte customSubsurfaceBlock(Biome biome,
-	                                   @Local(ordinal = 0, argsOnly = true) int chunkX,
-	                                   @Local(ordinal = 1, argsOnly = true) int chunkZ,
-	                                   @Local(ordinal = 4) int x,
-	                                   @Local(ordinal = 3) int z) {
-		int wx = chunkX * 16 + x;
-		int wz = chunkZ * 16 + z;
-
-		if (biome instanceof SnowcappedHillsBiome) {
-			if (this.getBoostValue((wx + random.nextInt(4)) / -8, (wz + random.nextInt(4)) / -8) < -0.35) {
-				double specialValue = this.getSpecialValue(wx, wz);
-				if (specialValue < -1.0 || specialValue > 2.0) {
-					return (byte) Block.GRASS.id;
-				}
-			}
-
-			if (biome != AABiomes.SNOWCAPPED_FOREST) {
-				if (this.getSpecialValue(wx, wz) > 1.0) {
-					return (byte) Block.STONE.id;
-				}
-			}
-		}
-
-		return biome.subsurfaceBlockId;
-	}
-
-	@Redirect(
-		method = "populateChunk",
-		at = @At(
-			value = "INVOKE",
-			target = "Lnet/minecraft/world/World;canSnowFall(III)Z"
-		)
-	)
-	private boolean customSnowConditions(World world, int x, int y, int z) {
-		Biome biome = world.getBiome(x, z);
-		if (biome instanceof SnowcappedHillsBiome) {
-			biome.temperature = 0.21F - (getSnowValue(x, z) + y - 64.0F) * 0.05F / 30.0F;
-			boolean result = world.canSnowFall(x, y, z);
-			biome.temperature = 0.2F;
-			return result;
-		}
-		return world.canSnowFall(x, y, z);
 	}
 
 	@Unique

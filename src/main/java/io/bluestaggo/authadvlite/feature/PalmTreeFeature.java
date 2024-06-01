@@ -1,15 +1,20 @@
 package io.bluestaggo.authadvlite.feature;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
 import net.minecraft.world.World;
-import net.minecraft.world.gen.feature.Feature;
+import net.minecraft.world.gen.feature.AbstractTreeFeature;
 
 import java.util.Random;
 
-public class PalmTreeFeature extends Feature {
+public class PalmTreeFeature extends AbstractTreeFeature {
+	public PalmTreeFeature(boolean bl) {
+		super(bl);
+	}
+
 	public boolean place(World world, Random random, int x, int y, int z) {
-		int ground = world.getBlock(x, y - 1, z);
-		if (ground != Block.GRASS.id && ground != Block.SAND.id) {
+		Block ground = world.getBlock(x, y - 1, z);
+		if (ground != Blocks.GRASS && ground != Blocks.SAND) {
 			return false;
 		}
 
@@ -28,13 +33,13 @@ public class PalmTreeFeature extends Feature {
 					x += dirX;
 					z += dirZ;
 				}
-				this.setBlockWithMetadata(world, x, y + yy, z, Block.LOG.id, 3);
+				this.setBlockWithMetadata(world, x, y + yy, z, Blocks.LOG, 3);
 			}
 		}
 
 		y += heightTotal;
 		if (world.isAir(x, y, z)) {
-			this.setBlockWithMetadata(world, x, y, z, Block.LEAVES.id, 3);
+			this.setBlockWithMetadata(world, x, y, z, Blocks.LEAVES, 3);
 		}
 
 		for (int dir = 0; dir < 4; dir++) {
@@ -43,10 +48,10 @@ public class PalmTreeFeature extends Feature {
 
 			for (int i = 1; i < 4; i++) {
 				if (i <= 2 && world.isAir(x + dirX * i, y, z + dirZ * i)) {
-					this.setBlockWithMetadata(world, x + dirX * i, y, z + dirZ * i, Block.LEAVES.id, 3);
+					this.setBlockWithMetadata(world, x + dirX * i, y, z + dirZ * i, Blocks.LEAVES, 3);
 				}
 				if (i >= 2 && world.isAir(x + dirX * i, y - 1, z + dirZ * i)) {
-					this.setBlockWithMetadata(world, x + dirX * i, y - 1, z + dirZ * i, Block.LEAVES.id, 3);
+					this.setBlockWithMetadata(world, x + dirX * i, y - 1, z + dirZ * i, Blocks.LEAVES, 3);
 				}
 			}
 		}

@@ -1,6 +1,6 @@
 package io.bluestaggo.authadvlite.feature;
 
-import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.Feature;
 
@@ -24,12 +24,12 @@ public class CragFeature extends Feature {
 				int intSlope = (int) (slope * height);
 
 				int ground = world.getSurfaceHeight(xx + x, zz + z);
-				if (intSlope > 0 && world.getBlock(xx + x, ground - 1, zz + z) == Block.GRASS.id) {
-					this.setBlockWithMetadata(world, xx + x, ground - 1, zz + z, Block.DIRT.id, 0);
+				if (intSlope > 0 && world.getBlock(xx + x, ground - 1, zz + z) == Blocks.GRASS) {
+					this.setBlockWithMetadata(world, xx + x, ground - 1, zz + z, Blocks.DIRT, 0);
 				}
 
 				for (int yy = 0; yy < intSlope; yy++) {
-					this.setBlockWithMetadata(world, xx + x, yy + ground, zz + z, Block.STONE.id, 0);
+					this.setBlockWithMetadata(world, xx + x, yy + ground, zz + z, Blocks.STONE, 0);
 				}
 			}
 		}

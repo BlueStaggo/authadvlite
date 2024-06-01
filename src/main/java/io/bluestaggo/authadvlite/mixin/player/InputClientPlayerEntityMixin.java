@@ -1,5 +1,6 @@
 package io.bluestaggo.authadvlite.mixin.player;
 
+import com.mojang.authlib.GameProfile;
 import net.minecraft.client.entity.living.player.InputClientPlayerEntity;
 import net.minecraft.entity.living.player.PlayerEntity;
 import net.minecraft.world.World;
@@ -9,8 +10,8 @@ import org.spongepowered.asm.mixin.injection.ModifyConstant;
 
 @Mixin(InputClientPlayerEntity.class)
 public abstract class InputClientPlayerEntityMixin extends PlayerEntity {
-	public InputClientPlayerEntityMixin(World world) {
-		super(world);
+	public InputClientPlayerEntityMixin(World world, GameProfile profile) {
+		super(world, profile);
 	}
 
 	@ModifyConstant(

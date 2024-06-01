@@ -47,8 +47,8 @@ public class AddSmoothIslandLayer extends Layer {
 
                     if (this.nextInt(3) == 0) {
                         var10[var12 + var11 * width] = var19;
-                    } else if (var19 == Biome.ICE_PLAINS.id) {
-                        var10[var12 + var11 * width] = Biome.FROZEN_OCEAN.id;
+                    } else if (var19 == -1) {
+                        var10[var12 + var11 * width] = -1;
                     } else {
                         var10[var12 + var11 * width] = 0;
                     }

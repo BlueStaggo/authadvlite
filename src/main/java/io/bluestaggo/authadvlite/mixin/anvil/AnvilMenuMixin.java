@@ -27,7 +27,7 @@ public abstract class AnvilMenuMixin extends InventoryMenu {
 	)
 	private String freeRename1(AnvilMenu instance, @Local(ordinal = 0) ItemStack var1, @Local(ordinal = 1) ItemStack var5) {
 		if (this.itemName != null && !this.itemName.equalsIgnoreCase(var1.getHoverName()) && !this.itemName.isEmpty()) {
-            var5.setName(this.itemName);
+            var5.setHoverName(this.itemName);
         }
 		return null;
 	}

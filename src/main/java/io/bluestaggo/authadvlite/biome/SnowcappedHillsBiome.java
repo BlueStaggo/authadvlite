@@ -2,31 +2,23 @@ package io.bluestaggo.authadvlite.biome;
 
 import io.bluestaggo.authadvlite.mixin.FeatureDecoratorAccessor;
 import net.minecraft.world.biome.ExtremeHillsBiome;
-import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.feature.GiantSpruceTreeFeature;
-import net.minecraft.world.gen.feature.SpruceTreeFeature;
+import net.minecraft.world.gen.feature.*;
 
 import java.util.Random;
 
 public class SnowcappedHillsBiome extends ExtremeHillsBiome {
-	protected SnowcappedHillsBiome(int id) {
-		super(id);
+	protected SnowcappedHillsBiome(int id, boolean moreTrees) {
+		super(id, moreTrees);
 
 		FeatureDecoratorAccessor decorator = (FeatureDecoratorAccessor) this.decorator;
-		decorator.setTreeAttempts(0);
+		decorator.setTreeAttempts(moreTrees ? 3 : 0);
 		decorator.setGrassAttempts(3);
 	}
 
-	protected SnowcappedHillsBiome addTrees() {
-		FeatureDecoratorAccessor decorator = (FeatureDecoratorAccessor) this.decorator;
-		decorator.setTreeAttempts(3);
-		return this;
-	}
-
 	@Override
-	public Feature getRandomTree(Random random) {
+	public AbstractTreeFeature getRandomTree(Random random) {
 		return random.nextInt(3) != 0
-			? (random.nextInt(3) == 0 ? new GiantSpruceTreeFeature() : new SpruceTreeFeature(false))
+			? (random.nextInt(3) == 0 ? new PineTreeFeature() : new SpruceTreeFeature(false))
 			: (random.nextInt(5) == 0 ? this.largeTree : this.tree);
 	}
 }

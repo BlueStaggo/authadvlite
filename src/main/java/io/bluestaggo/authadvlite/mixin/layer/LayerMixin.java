@@ -23,7 +23,7 @@ public abstract class LayerMixin {
 		layer = new AddIslandLayer(3L, layer);
 		layer = new AddIslandLayer(4L, layer);
 		layer = new AddSmoothIslandLayer(5L, layer);
-		layer = new RiverLayer(2000L, layer);
+		layer = new FuzzyZoomLayer(2000L, layer);
 		layer = new MoreIslandsLayer(1001L, layer);
 		layer = new AddSmoothIslandLayer(7L, layer);
 		layer = new ClimateLayer(1001L, layer);
@@ -37,8 +37,8 @@ public abstract class LayerMixin {
         Layer var5 = ZoomLayer.zoom(1000L, var15, 0);
         RiverInitLayer var13 = new RiverInitLayer(100L, var5);
         var5 = ZoomLayer.zoom(1000L, var13, var4 + 1);
-        AddSunflowerPlainsLayer var14 = new AddSunflowerPlainsLayer(1L, var5);
-		AddSnowLayer riverLayer = new AddSnowLayer(1000L, var14);
+        RiverLayer var14 = new RiverLayer(1L, var5);
+		SmoothLayer riverLayer = new SmoothLayer(1000L, var14);
 
         Layer var6 = ZoomLayer.zoom(1000L, var15, 0);
         BiomeInitLayer var17 = new BiomeInitLayer(200L, var6, generatorType);
@@ -55,11 +55,11 @@ public abstract class LayerMixin {
 	            l = new ZoomLayer((long)(1000 + i), l);
 
 	            if (i == 0) {
-	                l = new SmoothLayer(1000L, l);
+	                l = new ShoreLayer(1000L, l);
 	            }
 	        }
 
-			l = new AddSnowLayer(1000L, l);
+			l = new SmoothLayer(1000L, l);
 			return l;
 		};
 

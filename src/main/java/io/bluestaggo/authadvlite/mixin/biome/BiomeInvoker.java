@@ -9,6 +9,6 @@ public interface BiomeInvoker {
 	@Invoker("setName") Biome invokeSetName(String name);
 	@Invoker("setBaseColor") Biome invokeSetBaseColor(int color);
 	@Invoker("setTemperatureAndDownfall") Biome invokeSetTemperatureAndDownfall(float temperature, float downfall);
-	@Invoker("setHeight") Biome invokeSetHeight(float baseHeight, float heightVariation);
+	@Invoker("setHeight") Biome invokeSetHeight(Biome.Height height);
 	@Invoker("setSnowy") Biome invokeSetSnowy();
 }

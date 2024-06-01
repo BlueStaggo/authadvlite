@@ -4,13 +4,13 @@ import io.bluestaggo.authadvlite.biome.AABiomes;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.IntArrays;
 import net.minecraft.world.biome.layer.Layer;
-import net.minecraft.world.biome.layer.SmoothLayer;
+import net.minecraft.world.biome.layer.ShoreLayer;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 
-@Mixin(SmoothLayer.class)
-public abstract class SmoothLayerMixin extends Layer {
-	public SmoothLayerMixin(long seed) {
+@Mixin(ShoreLayer.class)
+public abstract class ShoreLayerMixin extends Layer {
+	public ShoreLayerMixin(long seed) {
 		super(seed);
 	}
 

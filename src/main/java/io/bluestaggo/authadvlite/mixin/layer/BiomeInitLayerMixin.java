@@ -8,12 +8,10 @@ import net.minecraft.world.biome.layer.BiomeInitLayer;
 import net.minecraft.world.biome.layer.Layer;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
-import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 
 @Mixin(BiomeInitLayer.class)
 public abstract class BiomeInitLayerMixin extends Layer {
-	@Shadow private Biome[] biomes;
 	@Unique private Biome[] oceanBiomes = new Biome[] {
 		AABiomes.SEA_CRAGS,
 		AABiomes.ARCHIPELAGO
@@ -40,11 +38,13 @@ public abstract class BiomeInitLayerMixin extends Layer {
                     var6[var8 + var7 * width] = var9;
                 } else if (var9 > 0) {
 					ClimateZone zone = ClimateZone.getZoneFromId(var9);
-					Biome[] biomeArray = zone != null ? zone.biomes : this.biomes;
+					Biome[] biomeArray = zone != null ? zone.biomes : new Biome[] { Biome.PLAINS };
 					Biome biome = biomeArray[this.nextInt(biomeArray.length)];
 					var6[var8 + var7 * width] = biome.id;
                 } else if (this.nextInt(3) == 0) {
                     var6[var8 + var7 * width] = this.oceanBiomes[this.nextInt(this.oceanBiomes.length)].id;
+                } else if (this.nextInt(3) == 0) {
+                    var6[var8 + var7 * width] = Biome.DEEP_OCEAN.id;
                 } else {
                     var6[var8 + var7 * width] = Biome.OCEAN.id;
                 }

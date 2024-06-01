@@ -34,8 +34,8 @@ public abstract class SwampBiomeMixin extends Biome {
 	 */
 	@Overwrite
 	@Environment(EnvType.CLIENT)
-	public int getGrassColor() {
-		return super.getGrassColor();
+	public int getGrassColor(int x, int y, int z) {
+		return super.getGrassColor(x, y, z);
 	}
 
 	/**
@@ -44,7 +44,7 @@ public abstract class SwampBiomeMixin extends Biome {
 	 */
 	@Overwrite
 	@Environment(EnvType.CLIENT)
-	public int getFoliageColor() {
-		return super.getFoliageColor();
+	public int getFoliageColor(int x, int y, int z) {
+		return super.getFoliageColor(x, y, z);
 	}
 }

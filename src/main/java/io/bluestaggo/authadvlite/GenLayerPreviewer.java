@@ -114,8 +114,8 @@ public class GenLayerPreviewer {
 	}
 
 	private static int getBiomeColor(int i) {
-		if (i >= 0 && i < 256 && Biome.BY_ID[i] != null) {
-			Biome biome = Biome.BY_ID[i];
+		if (i >= 0 && i < 256 && Biome.byId(i) != null) {
+			Biome biome = Biome.byId(i);
 			if (biome.baseColor == 0) {
 				biome.baseColor = random.nextInt(0xFFFFFF);
 			}
@@ -400,7 +400,7 @@ public class GenLayerPreviewer {
 		for (Map.Entry<Integer, Integer> count : biomeCounts.entrySet()) {
 			int i = count.getKey();
 			int color = getBiomeColor(i);
-			String name = i < 0 || i > 255 || Biome.BY_ID[i] == null ? String.valueOf(i) : Biome.BY_ID[i].name;
+			String name = i < 0 || i > 255 || Biome.byId(i) == null ? String.valueOf(i) : Biome.byId(i).name;
 			int thisBarHeight = (int)((float)count.getValue() / (width * height) / maxPercent * barHeight);
 			String percent = String.format("%.2f", (float)count.getValue() * 100.0F / (width * height)) + "%";
 			name += "  " + percent;

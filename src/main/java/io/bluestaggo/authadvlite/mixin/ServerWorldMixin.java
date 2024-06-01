@@ -1,7 +1,6 @@
 package io.bluestaggo.authadvlite.mixin;
 
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.ILogger;
 import net.minecraft.util.profiler.Profiler;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldSettings;
@@ -13,8 +12,8 @@ import org.spongepowered.asm.mixin.injection.ModifyConstant;
 
 @Mixin(ServerWorld.class)
 public abstract class ServerWorldMixin extends World {
-	public ServerWorldMixin(WorldStorage storage, String name, Dimension dimension, WorldSettings settings, Profiler profiler, ILogger logger) {
-		super(storage, name, dimension, settings, profiler, logger);
+	public ServerWorldMixin(WorldStorage storage, String name, Dimension dimension, WorldSettings settings, Profiler profiler) {
+		super(storage, name, dimension, settings, profiler);
 	}
 
 	@ModifyConstant(
