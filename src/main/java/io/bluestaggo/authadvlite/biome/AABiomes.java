@@ -59,7 +59,7 @@ public class AABiomes {
 		biomeBuilder.name("Rainforest").color(0x1a9e1e).climate(1.2F, 0.9F).height(0.0F, 0.5F).heightVariation(0.2F, 1.0F);
 
 		biomeBuilder.biome = COLD_BEACH = new BeachBiome(getID(26)); // Fall back to 1.7's Cold Beach
-		biomeBuilder.name("Cold Beach").color(0xfaf0c0).climate(0.05F, 0.5F).snowy().height(0.0F, 0.1F);
+		biomeBuilder.name("Cold Beach").color(0xfaf0c0).climate(0.0F, 0.5F).snowy().height(0.0F, 0.1F);
 
 		biomeBuilder.biome = FROSTY_HIGHLANDS = new HighlandsBiome(getID());
 		biomeBuilder.name("Frosty Highlands").color(0x65a7a1).climate(0.0F, 0.1F).snowy().height(1.8F, 0.8F);
