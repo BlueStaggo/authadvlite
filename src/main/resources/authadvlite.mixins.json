@@ -14,6 +14,7 @@
     "ServerWorldMixin",
     "biome.BiomeInvoker",
     "biome.BiomeMixin",
+    "biome.IceBiomeMixin",
     "biome.SwampBiomeMixin",
     "layer.AddSunflowerPlainsLayerMixin",
     "layer.BiomeInitLayerMixin",
