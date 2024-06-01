@@ -4,6 +4,8 @@
   "package": "io.bluestaggo.authadvlite.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
+    "anvil.AnvilMenu$2Mixin",
+    "anvil.AnvilMenuMixin",
     "EnchantingTableMenuMixin",
     "FeatureDecoratorAccessor",
     "FoodItemMixin",
@@ -23,6 +25,7 @@
     "player.PlayerEntityMixin"
   ],
   "client": [
+    "anvil.AnvilScreenMixin",
     "player.InputClientPlayerEntityMixin"
   ],
   "server": [
