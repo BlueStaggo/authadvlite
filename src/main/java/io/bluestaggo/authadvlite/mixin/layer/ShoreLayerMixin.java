@@ -55,10 +55,10 @@ public abstract class ShoreLayerMixin extends Layer {
                         var6[var8 + var7 * width] = var9;
                     } else {
                         var6[var8 + var7 * width] =
-		                        Biome.BY_ID[var10].temperature < 0.15F
-				                        || Biome.BY_ID[var11].temperature < 0.15F
-				                        || Biome.BY_ID[var12].temperature < 0.15F
-				                        || Biome.BY_ID[var13].temperature < 0.15F ? AABiomes.COLD_BEACH.id
+		                        Biome.byId(var10).temperature < 0.15F
+				                        || Biome.byId(var11).temperature < 0.15F
+				                        || Biome.byId(var12).temperature < 0.15F
+				                        || Biome.byId(var13).temperature < 0.15F ? AABiomes.COLD_BEACH.id
 		                        : this.nextInt(4) == 3 ? AABiomes.GRAVEL_BEACH.id
 		                        : Biome.BEACH.id;
                     }
