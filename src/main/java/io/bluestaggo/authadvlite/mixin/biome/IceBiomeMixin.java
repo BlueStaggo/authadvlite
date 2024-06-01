@@ -22,7 +22,7 @@ public abstract class IceBiomeMixin extends Biome {
 		method = "<init>",
 		at = @At("TAIL")
 	)
-	private void removeTallGrass(int id, CallbackInfo ci) {
+	private void removeTallGrass(int id, boolean spikes, CallbackInfo ci) {
 		FeatureDecoratorAccessor decorator = (FeatureDecoratorAccessor) this.decorator;
 		decorator.setGrassAttempts(0);
 		decorator.setFlowerAttempts(0);
