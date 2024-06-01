@@ -1,19 +1,27 @@
 package io.bluestaggo.authadvlite.feature;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
+import net.minecraft.block.*;
+import net.minecraft.block.state.BlockState;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.AbstractTreeFeature;
 
 import java.util.Random;
 
 public class PalmTreeFeature extends AbstractTreeFeature {
+	private static final BlockState LOG_STATE = Blocks.LOG.defaultState().set(LogBlock.VARIANT, PlanksBlock.Variant.JUNGLE);
+	private static final BlockState LEAVES_STATE = Blocks.LEAVES.defaultState().set(LeavesBlock.VARIANT, PlanksBlock.Variant.JUNGLE);
+
 	public PalmTreeFeature(boolean bl) {
 		super(bl);
 	}
 
-	public boolean place(World world, Random random, int x, int y, int z) {
-		Block ground = world.getBlock(x, y - 1, z);
+	public boolean place(World world, Random random, BlockPos pos) {
+		int x = pos.getX();
+		int y = pos.getY();
+		int z = pos.getZ();
+
+		BlockState ground = world.getBlockState(pos.down());
 		if (ground != Blocks.GRASS && ground != Blocks.SAND) {
 			return false;
 		}
@@ -22,6 +30,8 @@ public class PalmTreeFeature extends AbstractTreeFeature {
 		int height2 = random.nextInt(2) + 1;
 		int height3 = random.nextInt(2);
 		int heightTotal = height + height2 + height3;
+
+		BlockPos.Mutable mpos = new BlockPos.Mutable(x, y, z);
 
 		{
 			int dir = random.nextInt(4);
@@ -33,13 +43,16 @@ public class PalmTreeFeature extends AbstractTreeFeature {
 					x += dirX;
 					z += dirZ;
 				}
-				this.setBlockWithMetadata(world, x, y + yy, z, Blocks.LOG, 3);
+
+				mpos.set(x, y + yy, z);
+				this.setBlockState(world, mpos, LOG_STATE);
 			}
 		}
 
 		y += heightTotal;
-		if (world.isAir(x, y, z)) {
-			this.setBlockWithMetadata(world, x, y, z, Blocks.LEAVES, 3);
+		mpos.set(x, y, z);
+		if (world.isAir(mpos)) {
+			this.setBlockState(world, mpos, LEAVES_STATE);
 		}
 
 		for (int dir = 0; dir < 4; dir++) {
@@ -47,11 +60,14 @@ public class PalmTreeFeature extends AbstractTreeFeature {
 			int dirZ = dir == 1 ? 1 : dir == 3 ? -1 : 0;
 
 			for (int i = 1; i < 4; i++) {
-				if (i <= 2 && world.isAir(x + dirX * i, y, z + dirZ * i)) {
-					this.setBlockWithMetadata(world, x + dirX * i, y, z + dirZ * i, Blocks.LEAVES, 3);
+				mpos.set(x + dirX * i, y, z + dirZ * i);
+				if (i <= 2 && world.isAir(mpos)) {
+					this.setBlockState(world, mpos, LEAVES_STATE);
 				}
-				if (i >= 2 && world.isAir(x + dirX * i, y - 1, z + dirZ * i)) {
-					this.setBlockWithMetadata(world, x + dirX * i, y - 1, z + dirZ * i, Blocks.LEAVES, 3);
+
+				mpos.set(x + dirX * i, y - 1, z + dirZ * i);
+				if (i >= 2 && world.isAir(mpos)) {
+					this.setBlockState(world, mpos, LEAVES_STATE);
 				}
 			}
 		}

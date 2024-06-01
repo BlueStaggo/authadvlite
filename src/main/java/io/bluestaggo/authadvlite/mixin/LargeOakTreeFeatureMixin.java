@@ -1,5 +1,6 @@
 package io.bluestaggo.authadvlite.mixin;
 
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.LargeOakTreeFeature;
 import org.objectweb.asm.Opcodes;
@@ -37,12 +38,11 @@ public abstract class LargeOakTreeFeatureMixin extends Feature {
 		method = "placeBranches",
 		at = @At(
 			value = "INVOKE",
-			target = "Lnet/minecraft/world/gen/feature/LargeOakTreeFeature;placeBranch([I[ILnet/minecraft/block/Block;)V"
+			target = "Lnet/minecraft/world/gen/feature/LargeOakTreeFeature;placeBranch(Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/Block;)V"
 		),
 		index = 1
 	)
-	private int[] placeBranches_higherBranches(int[] pos) {
-		pos[1] += (this.foliageClusterHeight - 1) / 2;
-		return pos;
+	private BlockPos placeBranches_higherBranches(BlockPos pos) {
+		return pos.add(0, (this.foliageClusterHeight - 1) / 2, 0);
 	}
 }

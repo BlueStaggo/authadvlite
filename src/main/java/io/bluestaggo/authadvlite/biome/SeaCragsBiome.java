@@ -1,6 +1,7 @@
 package io.bluestaggo.authadvlite.biome;
 
 import io.bluestaggo.authadvlite.feature.CragFeature;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 
@@ -14,14 +15,14 @@ public class SeaCragsBiome extends Biome {
 		this.passiveEntries.clear();
 	}
 
-	public void decorate(World world, Random random, int x, int z) {
-		super.decorate(world, random, x, z);
+	public void decorate(World world, Random random, BlockPos pos) {
+		super.decorate(world, random, pos);
 
 		int cragCount = 2 + random.nextInt(7);
+		BlockPos.Mutable mpos = new BlockPos.Mutable();
 		for (int i = 0; i < cragCount; i++) {
-			int xx = x + random.nextInt(16) + 8;
-			int zz = z + random.nextInt(16) + 8;
-			cragFeature.place(world, random, xx, 0, zz);
+			mpos.set(pos.getX() + random.nextInt(16) + 8, 0, pos.getZ() + random.nextInt(16) + 8);
+			cragFeature.place(world, random, mpos);
 		}
 	}
 }

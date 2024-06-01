@@ -6,7 +6,7 @@ import net.minecraft.world.biome.BeachBiome;
 public class GravelBeachBiome extends BeachBiome {
 	public GravelBeachBiome(int i) {
 		super(i);
-		this.surfaceBlock = Blocks.AIR;
-		this.subsurfaceBlock = Blocks.GRAVEL;
+		this.surfaceBlock = Blocks.AIR.defaultState();
+		this.subsurfaceBlock = Blocks.GRAVEL.defaultState();
 	}
 }

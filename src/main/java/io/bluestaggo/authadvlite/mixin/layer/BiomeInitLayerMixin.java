@@ -6,12 +6,13 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.IntArrays;
 import net.minecraft.world.biome.layer.BiomeInitLayer;
 import net.minecraft.world.biome.layer.Layer;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Overwrite;
-import org.spongepowered.asm.mixin.Unique;
+import net.minecraft.world.gen.chunk.OverworldGeneratorOptions;
+import org.spongepowered.asm.mixin.*;
 
 @Mixin(BiomeInitLayer.class)
 public abstract class BiomeInitLayerMixin extends Layer {
+	@Shadow @Final private OverworldGeneratorOptions options;
+
 	@Unique private Biome[] oceanBiomes = new Biome[] {
 		AABiomes.SEA_CRAGS,
 		AABiomes.ARCHIPELAGO
@@ -34,7 +35,9 @@ public abstract class BiomeInitLayerMixin extends Layer {
             for(int var8 = 0; var8 < width; ++var8) {
                 this.setChunkSeed((long)(var8 + x), (long)(var7 + z));
                 int var9 = var5[var8 + var7 * width];
-                if (var9 == Biome.MUSHROOM_ISLAND.id || var9 == Biome.MUSHROOM_ISLAND_SHORE.id || var9 == Biome.FROZEN_OCEAN.id) {
+				if (this.options != null && this.options.fixedBiome >= 0) {
+                    var6[var8 + var7 * width] = this.options.fixedBiome;
+				} else if (var9 == Biome.MUSHROOM_ISLAND.id || var9 == Biome.MUSHROOM_ISLAND_SHORE.id || var9 == Biome.FROZEN_OCEAN.id) {
                     var6[var8 + var7 * width] = var9;
                 } else if (var9 > 0) {
 					ClimateZone zone = ClimateZone.getZoneFromId(var9);

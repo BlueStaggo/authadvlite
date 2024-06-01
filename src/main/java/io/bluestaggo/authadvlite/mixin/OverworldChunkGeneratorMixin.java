@@ -44,7 +44,7 @@ public abstract class OverworldChunkGeneratorMixin implements ChunkSource {
 		method = "<init>",
 		at = @At("TAIL")
 	)
-	private void init(World world, long seed, boolean structures, CallbackInfo ci) {
+	private void init(World world, long seed, boolean structures, String generatorOptions, CallbackInfo ci) {
 		Random specialRandom = new Random(new Random(seed).nextLong());
 		this.biomeHeightNoise = new OctaveNoiseGenerator(specialRandom, 4);
 		this.specialNoise = new OctaveNoiseGenerator(specialRandom, 4);

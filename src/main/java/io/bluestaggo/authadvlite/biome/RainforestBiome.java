@@ -3,6 +3,7 @@ package io.bluestaggo.authadvlite.biome;
 import io.bluestaggo.authadvlite.mixin.FeatureDecoratorAccessor;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.TallPlantBlock;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.AbstractTreeFeature;
@@ -28,6 +29,6 @@ public class RainforestBiome extends Biome {
 
 	@Override
 	public Feature getRandomGrass(Random random) {
-		return new TallPlantFeature(Blocks.TALLGRASS, random.nextInt(4) == 0 ? 2 : 1);
+		return new TallPlantFeature(random.nextInt(4) == 0 ? TallPlantBlock.Type.FERN : TallPlantBlock.Type.GRASS);
 	}
 }

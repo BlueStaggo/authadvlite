@@ -1,6 +1,7 @@
 package io.bluestaggo.authadvlite.mixin.biome;
 
 import io.bluestaggo.authadvlite.biome.*;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.ExtremeHillsBiome;
 import net.minecraft.world.biome.SavannaBiome;
@@ -10,7 +11,6 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.Set;
 
@@ -155,21 +155,21 @@ public abstract class BiomeMixin implements BiomeCustomInvoker {
 	@ModifyVariable(
 		method = "getTemperature",
 		at = @At("HEAD"),
-		ordinal = 1,
+		ordinal = 0,
 		argsOnly = true
 	)
-	private int restrictTemperature(int y) {
-		if (y > 64 && ((Object)this instanceof LegacyExtremeHillsBiome) || ((Object)this instanceof WindsweptCragsBiome)) {
-			y = Math.max(y - 64, 64);
+	private BlockPos restrictTemperature(BlockPos pos) {
+		if (pos.getY() > 64 && ((Object)this instanceof LegacyExtremeHillsBiome) || ((Object)this instanceof WindsweptCragsBiome)) {
+			return new BlockPos(pos.getX(), Math.max(pos.getY() - 64, 64), pos.getZ());
 		}
-		return y;
+		return pos;
 	}
 
 	@ModifyConstant(
 		method = "populate",
-		constant = @Constant(intValue = 56)
+		constant = @Constant(intValue = 7)
 	)
 	private int removeOceanGravel(int constant) {
-		return -100;
+		return 1000;
 	}
 }

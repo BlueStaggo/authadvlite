@@ -5,14 +5,11 @@
   "compatibilityLevel": "JAVA_8",
   "mixins": [
     "CaveWorldCarverMixin",
-    "EnchantingTableMenuMixin",
     "FeatureDecoratorAccessor",
     "FoodItemMixin",
     "LargeOakTreeFeatureMixin",
     "OverworldChunkGeneratorMixin",
     "ServerWorldMixin",
-    "anvil.AnvilMenu$2Mixin",
-    "anvil.AnvilMenuMixin",
     "biome.BiomeInvoker",
     "biome.BiomeMixin",
     "biome.ForestBiomeMixin",
@@ -27,7 +24,6 @@
     "player.PlayerEntityMixin"
   ],
   "client": [
-    "anvil.AnvilScreenMixin",
     "player.InputClientPlayerEntityMixin"
   ],
   "server": [

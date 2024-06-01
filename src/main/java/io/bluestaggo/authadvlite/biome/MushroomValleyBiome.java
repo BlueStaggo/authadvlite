@@ -4,8 +4,10 @@ import io.bluestaggo.authadvlite.mixin.FeatureDecoratorAccessor;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.living.mob.passive.animal.MooshroomEntity;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.chunk.BlockStateStorage;
 import net.minecraft.world.gen.feature.AbstractTreeFeature;
 import net.minecraft.world.gen.feature.DarkOakTreeFeature;
 import net.minecraft.world.gen.feature.Feature;
@@ -20,8 +22,8 @@ public class MushroomValleyBiome extends Biome {
 		private final HugeMushroomFeature baseFeature = new HugeMushroomFeature();
 
 		@Override
-		public boolean place(World world, Random random, int x, int y, int z) {
-			return baseFeature.place(world, random, x, y, z);
+		public boolean place(World world, Random random, BlockPos pos) {
+			return baseFeature.place(world, random, pos);
 		}
 	};
 
@@ -41,9 +43,10 @@ public class MushroomValleyBiome extends Biome {
 			: this.tree;
 	}
 
-	public void populateChunk(World world, Random random, Block[] blocks, byte[] blockMetadata, int x, int y, double noise) {
-		this.surfaceBlock = Math.abs(noise) > 3.0D ? Blocks.MYCELIUM : Blocks.GRASS;
+	@Override
+	public void populateChunk(World world, Random random, BlockStateStorage blocks, int x, int z, double noise) {
+		this.surfaceBlock = Math.abs(noise) > 3.0D ? Blocks.MYCELIUM.defaultState() : Blocks.GRASS.defaultState();
 
-		super.populateChunk(world, random, blocks, blockMetadata, x, y, noise);
+		super.populateChunk(world, random, blocks, x, z, noise);
 	}
 }

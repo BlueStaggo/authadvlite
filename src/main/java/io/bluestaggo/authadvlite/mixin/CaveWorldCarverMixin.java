@@ -9,7 +9,7 @@ import org.spongepowered.asm.mixin.injection.ModifyConstant;
 @Mixin(CaveWorldCarver.class)
 public abstract class CaveWorldCarverMixin extends Generator {
 	@ModifyConstant(
-		method = "place(Lnet/minecraft/world/World;IIII[Lnet/minecraft/block/Block;)V",
+		method = "place(Lnet/minecraft/world/World;IIIILnet/minecraft/world/chunk/BlockStateStorage;)V",
 		constant = @Constant(intValue = 15)
 	)
 	private int increaseCaveDensity(int constant) {
@@ -17,7 +17,7 @@ public abstract class CaveWorldCarverMixin extends Generator {
 	}
 
 	@ModifyConstant(
-		method = "place(Lnet/minecraft/world/World;IIII[Lnet/minecraft/block/Block;)V",
+		method = "place(Lnet/minecraft/world/World;IIIILnet/minecraft/world/chunk/BlockStateStorage;)V",
 		constant = @Constant(intValue = 7)
 	)
 	private int increaseCaveSpread(int constant) {

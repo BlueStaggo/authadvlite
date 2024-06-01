@@ -15,7 +15,7 @@ public abstract class LayerMixin {
 	 * @reason Authentic Adventure changes a lot of things with biome distribution
 	 */
 	@Overwrite
-	public static Layer[] init(long seed, WorldGeneratorType generatorType) {
+	public static Layer[] init(long seed, WorldGeneratorType generatorType, String generatorOptions) {
         Layer layer = new RareIslandLayer(1L);
 		layer = new AddSmoothIslandLayer(1L, layer);
 		layer = new AddSmoothIslandLayer(2L, layer);
@@ -41,7 +41,7 @@ public abstract class LayerMixin {
 		SmoothLayer riverLayer = new SmoothLayer(1000L, var14);
 
         Layer var6 = ZoomLayer.zoom(1000L, var15, 0);
-        BiomeInitLayer var17 = new BiomeInitLayer(200L, var6, generatorType);
+        BiomeInitLayer var17 = new BiomeInitLayer(200L, var6, generatorType, generatorOptions);
         var6 = ZoomLayer.zoom(1000L, var17, 2);
         final Layer var18 = new ApplySubvariantsLayer(1000L, var6);
 

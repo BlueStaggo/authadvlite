@@ -22,7 +22,7 @@ public abstract class HungerManagerMixin {
 		this.lastFoodLevel = this.foodLevel;
 		if(this.exhaustion > 4.0F) {
 			this.exhaustion -= 4.0F;
-			if(player.world.difficulty != Difficulty.PEACEFUL) {
+			if(player.world.getDifficulty() != Difficulty.PEACEFUL) {
 				this.foodLevel = Math.max(this.foodLevel - 1, 0);
 			}
 		}

@@ -76,7 +76,7 @@ public class GenLayerPreviewer {
 		final int y = -432;
 		final int width = 864;
 		final int height = 864;
-		addGenLayers(Layer.init(seed, WorldGeneratorType.DEFAULT)[0]);
+		addGenLayers(Layer.init(seed, WorldGeneratorType.DEFAULT, "")[0]);
 
 		initWorldGenSeed();
 		if (format.isSequenced()) {

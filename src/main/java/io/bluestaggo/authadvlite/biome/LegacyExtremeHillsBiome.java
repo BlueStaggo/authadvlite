@@ -3,6 +3,7 @@ package io.bluestaggo.authadvlite.biome;
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.ExtremeHillsBiome;
+import net.minecraft.world.chunk.BlockStateStorage;
 import net.minecraft.world.gen.feature.AbstractTreeFeature;
 import net.minecraft.world.gen.feature.PineTreeFeature;
 import net.minecraft.world.gen.feature.SpruceTreeFeature;
@@ -28,7 +29,8 @@ public class LegacyExtremeHillsBiome extends ExtremeHillsBiome {
 			: (random.nextInt(5) == 0 ? this.largeTree : this.tree);
 	}
 
-	public void populateChunk(World world, Random random, Block[] blocks, byte[] blockMetadata, int x, int y, double noise) {
-		this.populate(world, random, blocks, blockMetadata, x, y, noise);
+	@Override
+	public void populateChunk(World world, Random random, BlockStateStorage blocks, int x, int z, double noise) {
+		this.populate(world, random, blocks, x, z, noise);
 	}
 }

@@ -1,13 +1,18 @@
 package io.bluestaggo.authadvlite.feature;
 
 import net.minecraft.block.Blocks;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.Feature;
 
 import java.util.Random;
 
 public class CragFeature extends Feature {
-	public boolean place(World world, Random random, int x, int y, int z) {
+	public boolean place(World world, Random random, BlockPos pos) {
+		int x = pos.getX();
+		int z = pos.getZ();
+		BlockPos.Mutable mpos = new BlockPos.Mutable(x, 0, z);
+
 		int height = random.nextInt(14) + 4;
 		int radius = random.nextInt(6) + 3;
 		float radiusSquare = radius * radius;
@@ -23,13 +28,16 @@ public class CragFeature extends Feature {
 				slope *= slope;
 				int intSlope = (int) (slope * height);
 
-				int ground = world.getSurfaceHeight(xx + x, zz + z);
-				if (intSlope > 0 && world.getBlock(xx + x, ground - 1, zz + z) == Blocks.GRASS) {
-					this.setBlockWithMetadata(world, xx + x, ground - 1, zz + z, Blocks.DIRT, 0);
+				mpos.set(xx + x, 0, zz + z);
+				int ground = world.getSurfaceHeight(mpos).getY();
+				mpos.set(mpos.getX(), ground, mpos.getZ());
+				if (intSlope > 0 && world.getBlockState(mpos.down()).getBlock() == Blocks.GRASS) {
+					this.setBlockState(world, mpos.down(), Blocks.DIRT.defaultState());
 				}
 
 				for (int yy = 0; yy < intSlope; yy++) {
-					this.setBlockWithMetadata(world, xx + x, yy + ground, zz + z, Blocks.STONE, 0);
+					mpos.set(xx + x, yy + ground, zz + z);
+					this.setBlockState(world, mpos, Blocks.STONE.defaultState());
 				}
 			}
 		}

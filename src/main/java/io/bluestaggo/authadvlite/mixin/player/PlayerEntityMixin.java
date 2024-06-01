@@ -38,11 +38,11 @@ public abstract class PlayerEntityMixin extends LivingEntity implements CommandS
 
 	@Unique
 	private void addCustomFatigue(float amount) {
-		if (this.abilities.invulnerable || this.world.isMultiplayer) return;
+		if (this.abilities.invulnerable || this.world.isClient) return;
 
-		if (this.world.difficulty.getId() < 2) {
+		if (this.world.getDifficulty().getId() < 2) {
 			amount /= 2.0F;
-		} else if (this.world.difficulty.getId() > 2) {
+		} else if (this.world.getDifficulty().getId() > 2) {
 			amount *= 2.0F;
 		}
 
