@@ -1,5 +1,6 @@
 package io.bluestaggo.authadvlite.mixin.biome;
 
+import io.bluestaggo.authadvlite.mixin.FeatureDecoratorAccessor;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.world.biome.Biome;
@@ -22,6 +23,9 @@ public abstract class SwampBiomeMixin extends Biome {
 	)
 	private void init(int par1, CallbackInfo ci) {
 		this.waterColor = 0xFFFFFF;
+
+		FeatureDecoratorAccessor decorator = (FeatureDecoratorAccessor) this.decorator;
+		decorator.setHugeMushroomAttempts(1);
 	}
 
 	/**
